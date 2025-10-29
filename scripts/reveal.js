@@ -18,7 +18,10 @@ export function renderRevealGrid(cards) {
       <h2>Reveal Your Cards</h2>
       <p class="subtitle">Click each card to reveal, or use the button below</p>
 
-      <button id="revealAllBtn" class="reveal-all-btn">( Reveal All</button>
+      <div class="reveal-controls">
+        <button id="revealAllBtn" class="reveal-all-btn">✨ Reveal All</button>
+        <button id="viewResultsBtn" class="view-results-btn" style="display: none;">📊 View Results</button>
+      </div>
 
       <div class="card-grid">
         ${cards.map((card, index) => `
@@ -59,7 +62,20 @@ export function renderRevealGrid(cards) {
  */
 function initCardFlip(cards) {
   const slots = document.querySelectorAll('.card-slot');
+  const revealAllBtn = document.getElementById('revealAllBtn');
+  const viewResultsBtn = document.getElementById('viewResultsBtn');
   let flippedCount = 0;
+
+  // Show "View Results" button when all cards revealed
+  function checkAllRevealed() {
+    if (flippedCount === 10) {
+      revealAllBtn.style.display = 'none';
+      viewResultsBtn.style.display = 'inline-block';
+
+      // Add animation
+      viewResultsBtn.classList.add('fade-in');
+    }
+  }
 
   // Individual card click
   slots.forEach((slot, index) => {
@@ -68,13 +84,7 @@ function initCardFlip(cards) {
 
       flipCard(slot, cards[index]);
       flippedCount++;
-
-      // All cards revealed -> go to summary
-      if (flippedCount === 10) {
-        setTimeout(() => {
-          setState('summary', { cards });
-        }, 1000);
-      }
+      checkAllRevealed();
     });
 
     // Add 3D tilt effect
@@ -82,22 +92,28 @@ function initCardFlip(cards) {
   });
 
   // Reveal All button
-  document.getElementById('revealAllBtn').addEventListener('click', () => {
+  revealAllBtn.addEventListener('click', () => {
     let delay = 0;
 
     slots.forEach((slot, index) => {
       if (slot.dataset.flipped === 'false') {
         setTimeout(() => {
           flipCard(slot, cards[index]);
+          flippedCount++;
+
+          // Check after last card
+          if (index === slots.length - 1) {
+            setTimeout(checkAllRevealed, 200);
+          }
         }, delay);
         delay += 150; // Stagger delay
       }
     });
+  });
 
-    // Go to summary after all reveals
-    setTimeout(() => {
-      setState('summary', { cards });
-    }, delay + 1000);
+  // View Results button
+  viewResultsBtn.addEventListener('click', () => {
+    setState('summary', { cards });
   });
 }
 

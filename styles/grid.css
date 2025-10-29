@@ -28,8 +28,14 @@
   font-size: 1rem;
 }
 
-.reveal-all-btn {
+.reveal-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
   margin: var(--spacing-md) 0;
+}
+
+.reveal-all-btn {
   padding: var(--spacing-sm) var(--spacing-xl);
   background: linear-gradient(135deg, var(--color-epic), var(--color-mythic));
   color: white;
@@ -45,6 +51,39 @@
 .reveal-all-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(168, 85, 247, 0.6);
+}
+
+.view-results-btn {
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: linear-gradient(135deg, var(--color-mythic), var(--color-epic));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s;
+}
+
+.view-results-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.6);
+}
+
+.fade-in {
+  animation: fade-in-up 0.5s ease-in;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ======================
@@ -152,15 +191,19 @@
   width: 100%;
   height: 60%;
   object-fit: cover;
+  flex-shrink: 0;
+  display: block;
 }
 
 .card-info {
   padding: var(--spacing-xs);
   text-align: center;
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .card-name {
