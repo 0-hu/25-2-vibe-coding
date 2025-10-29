@@ -102,27 +102,34 @@ function initDragToTear(pack) {
   let isDragging = false;
   let startX = 0;
   let currentProgress = 0;
+  const dragDistance = 300; // 300px를 드래그하면 100% 달성
 
   overlay.addEventListener('pointerdown', (e) => {
     isDragging = true;
     startX = e.clientX;
     overlay.style.cursor = 'grabbing';
     overlay.classList.add('dragging');
+    e.preventDefault();
   });
 
   window.addEventListener('pointermove', (e) => {
     if (!isDragging) return;
 
     const deltaX = e.clientX - startX;
-    currentProgress = Math.min(Math.max(deltaX / (window.innerWidth * 0.5), 0), 1);
+    // 300px 기준으로 진행도 계산 (더 직관적)
+    currentProgress = Math.min(Math.max(deltaX / dragDistance, 0), 1);
 
     // Update UI
     progressFill.style.width = (currentProgress * 100) + '%';
     progressText.textContent = Math.floor(currentProgress * 100) + '%';
 
-    // Apply visual tear effect using clip-path
-    overlay.style.clipPath = `inset(0 ${(1 - currentProgress) * 100}% 0 0)`;
-    overlay.style.opacity = 1 - (currentProgress * 0.3);
+    // 팩이 마우스를 따라가는 느낌 + 찢어지는 효과
+    const moveAmount = deltaX * 0.5; // 마우스 이동의 50%만큼 팩도 이동
+    overlay.style.transform = `translateX(${moveAmount}px) rotate(${currentProgress * 5}deg)`;
+
+    // 찢어지는 효과 (좌측에서 우측으로)
+    overlay.style.clipPath = `polygon(${currentProgress * 100}% 0, 100% 0, 100% 100%, ${currentProgress * 100}% 100%)`;
+    overlay.style.opacity = 1 - (currentProgress * 0.2);
 
     // Threshold reached
     if (currentProgress >= 1) {
@@ -136,9 +143,10 @@ function initDragToTear(pack) {
       // Snap back animation if not complete
       if (typeof gsap !== 'undefined') {
         gsap.to(overlay, {
-          clipPath: 'inset(0 0 0 0)',
+          transform: 'translateX(0px) rotate(0deg)',
+          clipPath: 'polygon(0% 0, 100% 0, 100% 100%, 0% 100%)',
           opacity: 1,
-          duration: 0.3,
+          duration: 0.4,
           ease: 'back.out',
           onComplete: () => {
             currentProgress = 0;
@@ -148,7 +156,8 @@ function initDragToTear(pack) {
         });
       } else {
         // Fallback without GSAP
-        overlay.style.clipPath = 'inset(0 0 0 0)';
+        overlay.style.transform = 'translateX(0px) rotate(0deg)';
+        overlay.style.clipPath = 'polygon(0% 0, 100% 0, 100% 100%, 0% 100%)';
         overlay.style.opacity = '1';
         currentProgress = 0;
         progressFill.style.width = '0%';
