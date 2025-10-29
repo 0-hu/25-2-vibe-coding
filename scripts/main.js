@@ -25,7 +25,7 @@ let pityCounter = {
  * @param {Object} data - Additional data for the new state
  */
 export function setState(newState, data = {}) {
-  console.log(`State transition: ${currentState} ’ ${newState}`);
+  console.log(`State transition: ${currentState} -> ${newState}`);
   currentState = newState;
 
   switch (newState) {
@@ -134,8 +134,8 @@ function renderSummary(cards) {
       </div>
 
       <div class="action-buttons">
-        <button id="toInventoryBtn" class="primary-btn">=æ View Inventory</button>
-        <button id="openAnotherBtn" class="secondary-btn"><´ Open Another Pack</button>
+        <button id="toInventoryBtn" class="primary-btn">=ï¿½ View Inventory</button>
+        <button id="openAnotherBtn" class="secondary-btn"><ï¿½ Open Another Pack</button>
       </div>
     </div>
   `;
@@ -205,7 +205,7 @@ function loadPityCounter() {
  * Initialize application
  */
 async function init() {
-  console.log('<´ Mystic Gacha - Initializing...');
+  console.log('<ï¿½ Mystic Gacha - Initializing...');
 
   try {
     // Load card and pack data
