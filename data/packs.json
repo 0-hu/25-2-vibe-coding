@@ -1,0 +1,24 @@
+[
+  {
+    "id": "pack_universal",
+    "name": "Universal Pack",
+    "description": "Contains mystical cards from all realms - Dragons, Cyborgs, Spirits, Elementals, and Beasts",
+    "image": "https://images.unsplash.com/photo-1618588507085-c79565432917?w=400&h=600&fit=crop",
+    "rarityWeights": {
+      "common": 70,
+      "rare": 20,
+      "epic": 9,
+      "mythic": 1
+    },
+    "pool": [
+      "card_001", "card_002", "card_003", "card_004", "card_005",
+      "card_006", "card_007", "card_008", "card_009", "card_010",
+      "card_011", "card_012", "card_013", "card_014", "card_015",
+      "card_016", "card_017", "card_018", "card_019", "card_020",
+      "card_021", "card_022", "card_023", "card_024", "card_025",
+      "card_026", "card_027", "card_028", "card_029", "card_030",
+      "card_031", "card_032", "card_033", "card_034", "card_035",
+      "card_036", "card_037", "card_038", "card_039", "card_040"
+    ]
+  }
+]

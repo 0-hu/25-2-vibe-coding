@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mystic Gacha - Card Pack Simulator</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/liquid-glass.css">
+  <link rel="stylesheet" href="styles/pack.css">
+  <link rel="stylesheet" href="styles/grid.css">
+  <link rel="stylesheet" href="styles/holo-card.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="liquid-glass-header">
+    <h1>Mystic Gacha</h1>
+    <div class="controls">
+      <button id="volumeToggle">🔊</button>
+      <button id="inventoryBtn">📦 Inventory</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main id="app">
+    <!-- 상태별 화면이 여기 렌더링됨 -->
+  </main>
+
+  <!-- Pity Counter (Fixed Bottom) -->
+  <div id="pityCounter" class="pity-bar">
+    <div class="pity-item">
+      <span>Total: <strong id="totalPulls">0</strong></span>
+    </div>
+    <div class="pity-item">
+      <span>Epic in: <strong id="epicCounter">30</strong></span>
+      <div class="progress-bar"><div id="epicProgress"></div></div>
+    </div>
+    <div class="pity-item">
+      <span>Mythic in: <strong id="mythicCounter">90</strong></span>
+      <div class="progress-bar"><div id="mythicProgress"></div></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>

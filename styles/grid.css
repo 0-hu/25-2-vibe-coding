@@ -1,0 +1,280 @@
+/**
+ * grid.css - Card Reveal Grid Styles
+ * Flip animations, card layout, and rarity effects
+ */
+
+/* ======================
+   Reveal Stage
+   ====================== */
+.reveal-stage {
+  padding: var(--spacing-lg);
+  text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.reveal-stage h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  background: linear-gradient(135deg, var(--color-epic), var(--color-mythic));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reveal-stage .subtitle {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-size: 1rem;
+}
+
+.reveal-all-btn {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: linear-gradient(135deg, var(--color-epic), var(--color-mythic));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+  transition: all 0.3s;
+}
+
+.reveal-all-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.6);
+}
+
+/* ======================
+   Card Grid
+   ====================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.card-slot {
+  aspect-ratio: 2/3;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Flip animation */
+.card-slot.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ======================
+   Card Back
+   ====================== */
+.card-back {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-back-pattern {
+  width: 80%;
+  height: 80%;
+  background: repeating-conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(255, 255, 255, 0.1) 0deg 90deg,
+    transparent 90deg 180deg
+  );
+  border-radius: 50%;
+  animation: rotate-pattern 20s linear infinite;
+}
+
+@keyframes rotate-pattern {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.card-back-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0%, 100% { transform: translateX(-100%) translateY(-100%); }
+  50% { transform: translateX(100%) translateY(100%); }
+}
+
+/* ======================
+   Card Front
+   ====================== */
+.card-front {
+  transform: rotateY(180deg);
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-front img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: var(--spacing-xs);
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-name {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-type {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-rarity {
+  font-size: 0.7rem;
+  font-weight: bold;
+  margin: 0.25rem 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.card-flavor {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.3;
+  margin-top: 0.25rem;
+}
+
+/* ======================
+   Rarity-specific borders
+   ====================== */
+.card-slot.flipped.rarity-rare .card-front {
+  border-color: var(--color-rare);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.card-slot.flipped.rarity-epic .card-front {
+  border-color: var(--color-epic);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+}
+
+.card-slot.flipped.rarity-mythic .card-front {
+  border-color: var(--color-mythic);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.7);
+}
+
+/* ======================
+   Glare Sweep Effect
+   ====================== */
+.card-slot.glare-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: glare 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes glare {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ======================
+   Responsive
+   ====================== */
+@media (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .reveal-stage h2 {
+    font-size: 1.8rem;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .card-name {
+    font-size: 0.8rem;
+  }
+
+  .card-type,
+  .card-rarity,
+  .card-flavor {
+    font-size: 0.65rem;
+  }
+
+  .reveal-all-btn {
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+}

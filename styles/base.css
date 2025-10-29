@@ -1,0 +1,241 @@
+/* ======================
+   CSS Reset
+   ====================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ======================
+   CSS Variables
+   ====================== */
+:root {
+  /* Colors - Rarity */
+  --color-common: #9CA3AF;
+  --color-rare: #3B82F6;
+  --color-epic: #A855F7;
+  --color-mythic: #F59E0B;
+
+  /* Colors - UI */
+  --bg-dark: #0F172A;
+  --bg-secondary: #1E293B;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* Typography */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-base: 16px;
+
+  /* Effects */
+  --blur-amount: 10px;
+  --transition-speed: 0.3s;
+}
+
+/* ======================
+   Base Styles
+   ====================== */
+html, body {
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  background-attachment: fixed;
+}
+
+#app {
+  min-height: calc(100vh - 130px);
+  padding: var(--spacing-lg);
+  padding-top: calc(70px + var(--spacing-lg));
+}
+
+/* ======================
+   Pity Bar (Fixed Bottom)
+   ====================== */
+.pity-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  backdrop-filter: blur(var(--blur-amount));
+  background: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 var(--spacing-lg);
+  z-index: 999;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.pity-item span {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pity-item strong {
+  font-size: 1.2rem;
+  color: var(--color-epic);
+}
+
+.progress-bar {
+  width: 120px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar > div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-rare), var(--color-epic));
+  transition: width 0.3s ease;
+  width: 0%;
+  position: relative;
+  overflow: visible;
+}
+
+/* 90% tÁ Ü ½à \Ü */
+.progress-bar > div.warning {
+  background: linear-gradient(90deg, var(--color-mythic), #ef4444);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ======================
+   Common Buttons
+   ====================== */
+button {
+  font-family: var(--font-family);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.primary-btn, .secondary-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.primary-btn {
+  background: var(--color-epic);
+  color: white;
+}
+
+.primary-btn:hover {
+  background: var(--color-mythic);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 2px solid var(--color-rare);
+  color: var(--color-rare);
+}
+
+.secondary-btn:hover {
+  background: var(--color-rare);
+  color: white;
+}
+
+/* ======================
+   Rarity Colors
+   ====================== */
+.rarity-common {
+  background: var(--color-common);
+  color: black;
+}
+
+.rarity-rare {
+  background: var(--color-rare);
+}
+
+.rarity-epic {
+  background: var(--color-epic);
+}
+
+.rarity-mythic {
+  background: var(--color-mythic);
+  color: black;
+}
+
+/* ======================
+   Utility Classes
+   ====================== */
+.text-center {
+  text-align: center;
+}
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* ======================
+   Responsive
+   ====================== */
+@media (max-width: 768px) {
+  :root {
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+  }
+
+  #app {
+    padding: var(--spacing-sm);
+    padding-top: calc(70px + var(--spacing-sm));
+  }
+
+  .pity-bar {
+    height: 70px;
+    flex-wrap: wrap;
+    padding: var(--spacing-xs);
+  }
+
+  .pity-item {
+    font-size: 0.75rem;
+  }
+
+  .progress-bar {
+    width: 80px;
+  }
+}

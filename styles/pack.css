@@ -1,0 +1,275 @@
+/**
+ * pack.css - Pack Selection and Opening Stage Styles
+ */
+
+/* ======================
+   Pack Selection
+   ====================== */
+.pack-selection {
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pack-selection h2 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-sm);
+  background: linear-gradient(135deg, var(--color-rare), var(--color-epic));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+  font-size: 1.1rem;
+}
+
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.pack-card {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: var(--spacing-md);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.pack-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-epic);
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
+}
+
+.pack-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.pack-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.pack-card:hover .pack-image-container img {
+  transform: scale(1.05);
+}
+
+.pack-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(168, 85, 247, 0.3) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pack-card:hover .pack-glow {
+  opacity: 1;
+}
+
+.pack-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-primary);
+}
+
+.pack-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.5;
+}
+
+.pack-stats {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.pack-stat {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.select-btn {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: linear-gradient(135deg, var(--color-rare), var(--color-epic));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.select-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(168, 85, 247, 0.4);
+}
+
+/* ======================
+   Tearing Stage
+   ====================== */
+.tearing-stage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: var(--spacing-lg);
+}
+
+.stage-title {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--color-rare), var(--color-mythic));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pack-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 2/3;
+  margin-bottom: var(--spacing-lg);
+}
+
+.pack-overlay {
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  user-select: none;
+  position: relative;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.05s linear;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.pack-overlay.dragging {
+  cursor: grabbing;
+}
+
+.pack-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.tear-progress {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: var(--spacing-sm);
+  border-radius: 12px;
+}
+
+#progressText {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+.progress-bar-tear {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-rare), var(--color-epic), var(--color-mythic));
+  width: 0%;
+  transition: width 0.05s linear;
+  border-radius: 4px;
+}
+
+.hint {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  animation: pulse-hint 2s infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.pack-overlay.explode {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px) rotate(-2deg); }
+  75% { transform: translateX(10px) rotate(2deg); }
+}
+
+/* ======================
+   Responsive
+   ====================== */
+@media (max-width: 768px) {
+  .pack-selection h2 {
+    font-size: 2rem;
+  }
+
+  .pack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pack-wrapper {
+    max-width: 300px;
+  }
+
+  .stage-title {
+    font-size: 1.5rem;
+  }
+
+  .hint {
+    font-size: 0.9rem;
+  }
+}
