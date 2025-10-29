@@ -4,6 +4,7 @@
  */
 
 import { setState } from './main.js';
+import { playSound } from './sound.js';
 
 /**
  * Render reveal grid with 10 cards (face down)
@@ -23,7 +24,7 @@ export function renderRevealGrid(cards) {
         ${cards.map((card, index) => `
           <div class="card-slot" data-index="${index}" data-flipped="false" data-rarity="${card.rarity}">
             <div class="card-inner">
-              <!-- Front (·t) -->
+              <!-- Front (ï¿½t) -->
               <div class="card-face card-back">
                 <div class="card-back-pattern"></div>
                 <div class="card-back-shine"></div>
@@ -110,8 +111,8 @@ function flipCard(slot, card) {
   slot.classList.add('flipped');
   slot.classList.add(`rarity-${card.rarity}`);
 
-  // Play sound based on rarity (will be implemented in Phase 8)
-  // playSound(card.rarity);
+  // Play sound based on rarity
+  playSound(card.rarity);
 
   // Add glare sweep for Epic/Mythic cards
   if (card.rarity === 'epic' || card.rarity === 'mythic') {
@@ -136,7 +137,7 @@ function add3DTilt(cardElement) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -10; // -10 ~ 10Ä
+    const rotateX = ((y - centerY) / centerY) * -10; // -10 ~ 10ï¿½
     const rotateY = ((x - centerX) / centerX) * 10;
 
     const isFlipped = cardElement.dataset.flipped === 'true';

@@ -5,6 +5,7 @@
 
 import { packsData } from './packs.js';
 import { setState } from './main.js';
+import { playSound } from './sound.js';
 
 /**
  * Render pack selection screen
@@ -68,7 +69,7 @@ export function renderTearingStage(pack) {
           <img src="${pack.image}" alt="${pack.name}">
 
           <div class="tear-progress">
-            <span id="progressText">Drag right to tear ’</span>
+            <span id="progressText">Drag right to tear ï¿½</span>
             <div class="progress-bar-tear">
               <div id="tearProgress" class="progress-fill"></div>
             </div>
@@ -141,7 +142,7 @@ function initDragToTear(pack) {
           onComplete: () => {
             currentProgress = 0;
             progressFill.style.width = '0%';
-            progressText.textContent = 'Drag right to tear ’';
+            progressText.textContent = 'Drag right to tear ï¿½';
           }
         });
       } else {
@@ -150,7 +151,7 @@ function initDragToTear(pack) {
         overlay.style.opacity = '1';
         currentProgress = 0;
         progressFill.style.width = '0%';
-        progressText.textContent = 'Drag right to tear ’';
+        progressText.textContent = 'Drag right to tear ï¿½';
       }
     }
 
@@ -170,8 +171,8 @@ function completeTearing(pack) {
   // Add explosion effect
   overlay.classList.add('explode');
 
-  // Play sound (will be implemented in Phase 8)
-  // playSound('packTear');
+  // Play pack tear sound
+  playSound('packTear');
 
   // Animate out with GSAP if available
   if (typeof gsap !== 'undefined') {
