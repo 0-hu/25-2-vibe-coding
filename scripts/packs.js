@@ -126,19 +126,19 @@ export function draw10Cards(packId, pityCounter) {
 export function testPitySystem() {
   console.log('=== Pity System Test ===');
 
-  // Test 1: Epic Pity (30�)
+  // Test 1: Epic Pity (30회)
   let pity = { pullsSinceLastEpic: 29, pullsSinceLastMythic: 50, totalPulls: 50 };
   const result1 = draw10Cards('pack_universal', pity);
   const hasEpicOrMythic = result1.some(c => c.rarity === 'epic' || c.rarity === 'mythic');
-  console.log('Epic Pity Test (29� �):', hasEpicOrMythic ? ' PASS' : 'L FAIL');
-  console.log('Epic Counter Reset:', pity.pullsSinceLastEpic < 10 ? ' PASS' : 'L FAIL');
+  console.log('Epic Pity Test (29회 후):', hasEpicOrMythic ? 'PASS' : 'FAIL');
+  console.log('Epic Counter Reset:', pity.pullsSinceLastEpic < 10 ? 'PASS' : 'FAIL');
 
-  // Test 2: Mythic Pity (90�)
+  // Test 2: Mythic Pity (90회)
   pity = { pullsSinceLastEpic: 0, pullsSinceLastMythic: 89, totalPulls: 89 };
   const result2 = draw10Cards('pack_universal', pity);
   const hasMythic = result2.some(c => c.rarity === 'mythic');
-  console.log('Mythic Pity Test (89� �):', hasMythic ? ' PASS' : 'L FAIL');
-  console.log('Mythic Counter Reset:', pity.pullsSinceLastMythic < 10 ? ' PASS' : 'L FAIL');
+  console.log('Mythic Pity Test (89회 후):', hasMythic ? 'PASS' : 'FAIL');
+  console.log('Mythic Counter Reset:', pity.pullsSinceLastMythic < 10 ? 'PASS' : 'FAIL');
 
   // Test 3: Probability Distribution (1000 pulls)
   const distribution = { common: 0, rare: 0, epic: 0, mythic: 0 };
