@@ -3,7 +3,7 @@
  * Handles pack selection UI and drag-to-tear interaction
  */
 
-import { packsData } from './packs.js';
+import { getPacksData } from './packs.js';
 import { setState } from './main.js';
 import { playSound } from './sound.js';
 
@@ -12,6 +12,7 @@ import { playSound } from './sound.js';
  */
 export function renderPackSelection() {
   const app = document.getElementById('app');
+  const packsData = getPacksData();
 
   const html = `
     <div class="pack-selection">
@@ -44,7 +45,7 @@ export function renderPackSelection() {
   document.querySelectorAll('.select-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const packId = e.target.closest('.pack-card').dataset.packId;
-      const pack = packsData.find(p => p.id === packId);
+      const pack = getPacksData().find(p => p.id === packId);
 
       if (pack) {
         setState('tearing', { pack });

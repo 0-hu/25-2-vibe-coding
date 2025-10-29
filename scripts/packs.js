@@ -126,18 +126,18 @@ export function draw10Cards(packId, pityCounter) {
 export function testPitySystem() {
   console.log('=== Pity System Test ===');
 
-  // Test 1: Epic Pity (30Œ)
+  // Test 1: Epic Pity (30ï¿½)
   let pity = { pullsSinceLastEpic: 29, pullsSinceLastMythic: 50, totalPulls: 50 };
   const result1 = draw10Cards('pack_universal', pity);
   const hasEpicOrMythic = result1.some(c => c.rarity === 'epic' || c.rarity === 'mythic');
-  console.log('Epic Pity Test (29Œ Ä):', hasEpicOrMythic ? ' PASS' : 'L FAIL');
+  console.log('Epic Pity Test (29ï¿½ ï¿½):', hasEpicOrMythic ? ' PASS' : 'L FAIL');
   console.log('Epic Counter Reset:', pity.pullsSinceLastEpic < 10 ? ' PASS' : 'L FAIL');
 
-  // Test 2: Mythic Pity (90Œ)
+  // Test 2: Mythic Pity (90ï¿½)
   pity = { pullsSinceLastEpic: 0, pullsSinceLastMythic: 89, totalPulls: 89 };
   const result2 = draw10Cards('pack_universal', pity);
   const hasMythic = result2.some(c => c.rarity === 'mythic');
-  console.log('Mythic Pity Test (89Œ Ä):', hasMythic ? ' PASS' : 'L FAIL');
+  console.log('Mythic Pity Test (89ï¿½ ï¿½):', hasMythic ? ' PASS' : 'L FAIL');
   console.log('Mythic Counter Reset:', pity.pullsSinceLastMythic < 10 ? ' PASS' : 'L FAIL');
 
   // Test 3: Probability Distribution (1000 pulls)
@@ -154,6 +154,22 @@ export function testPitySystem() {
   console.log('Rare:', (distribution.rare / 1000 * 100).toFixed(1) + '% (expected ~20%)');
   console.log('Epic:', (distribution.epic / 1000 * 100).toFixed(1) + '% (expected ~9%)');
   console.log('Mythic:', (distribution.mythic / 1000 * 100).toFixed(1) + '% (expected ~1%)');
+}
+
+/**
+ * Get packs data (use this instead of direct import)
+ * @returns {Array} - Packs data array
+ */
+export function getPacksData() {
+  return packsData;
+}
+
+/**
+ * Get cards data (use this instead of direct import)
+ * @returns {Array} - Cards data array
+ */
+export function getCardsData() {
+  return cardsData;
 }
 
 // Export data for use in other modules
