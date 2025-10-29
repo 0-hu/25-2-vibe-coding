@@ -24,7 +24,7 @@ export function renderRevealGrid(cards) {
         ${cards.map((card, index) => `
           <div class="card-slot" data-index="${index}" data-flipped="false" data-rarity="${card.rarity}">
             <div class="card-inner">
-              <!-- Front (�t) -->
+              <!-- Front (뒷면) -->
               <div class="card-face card-back">
                 <div class="card-back-pattern"></div>
                 <div class="card-back-shine"></div>
@@ -137,7 +137,7 @@ function add3DTilt(cardElement) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -10; // -10 ~ 10�
+    const rotateX = ((y - centerY) / centerY) * -10; // -10 ~ 10도
     const rotateY = ((x - centerX) / centerX) * 10;
 
     const isFlipped = cardElement.dataset.flipped === 'true';

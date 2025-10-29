@@ -134,8 +134,8 @@ function renderSummary(cards) {
       </div>
 
       <div class="action-buttons">
-        <button id="toInventoryBtn" class="primary-btn">=� View Inventory</button>
-        <button id="openAnotherBtn" class="secondary-btn"><� Open Another Pack</button>
+        <button id="toInventoryBtn" class="primary-btn">📦 View Inventory</button>
+        <button id="openAnotherBtn" class="secondary-btn">🎴 Open Another Pack</button>
       </div>
     </div>
   `;
@@ -205,7 +205,7 @@ function loadPityCounter() {
  * Initialize application
  */
 async function init() {
-  console.log('<� Mystic Gacha - Initializing...');
+  console.log('🎴 Mystic Gacha - Initializing...');
 
   try {
     // Load card and pack data
