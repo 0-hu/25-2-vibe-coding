@@ -117,7 +117,7 @@ body {
   overflow: visible;
 }
 
-/* 90% tÁ Ü ½à \Ü */
+/* 90% tï¿½ ï¿½ ï¿½ï¿½ \ï¿½ */
 .progress-bar > div.warning {
   background: linear-gradient(90deg, var(--color-mythic), #ef4444);
   animation: pulse 1s infinite;
@@ -212,6 +212,166 @@ button:active {
 .mb-lg { margin-bottom: var(--spacing-lg); }
 
 /* ======================
+   Inventory View
+   ====================== */
+.inventory-view {
+  padding: var(--spacing-lg);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.inventory-title h2 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.inventory-stats {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.inventory-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  flex-wrap: wrap;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.sort-controls label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.filter-controls {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+select,
+input[type="text"] {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--bg-dark);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-family: var(--font-family);
+}
+
+select:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-epic);
+}
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.inventory-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.inventory-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-card.rarity-border-mythic {
+  border-color: var(--color-mythic);
+}
+
+.inventory-card.rarity-border-mythic:hover {
+  box-shadow: 0 10px 30px rgba(245, 158, 11, 0.5);
+}
+
+.inventory-card.rarity-border-epic {
+  border-color: var(--color-epic);
+}
+
+.inventory-card.rarity-border-epic:hover {
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+}
+
+.inventory-card.rarity-border-rare {
+  border-color: var(--color-rare);
+}
+
+.card-count-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  z-index: 10;
+}
+
+.inventory-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.inventory-card-info {
+  padding: var(--spacing-sm);
+  text-align: center;
+}
+
+.inventory-card-info h4 {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.card-type-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xl);
+  font-size: 1.2rem;
+  padding: var(--spacing-xl);
+}
+
+/* ======================
    Responsive
    ====================== */
 @media (max-width: 768px) {
@@ -237,5 +397,23 @@ button:active {
 
   .progress-bar {
     width: 80px;
+  }
+
+  .inventory-controls {
+    flex-direction: column;
+  }
+
+  .filter-controls {
+    width: 100%;
+  }
+
+  .filter-controls select,
+  .filter-controls input {
+    flex: 1;
+  }
+
+  .inventory-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--spacing-sm);
   }
 }
