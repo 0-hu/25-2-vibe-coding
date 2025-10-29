@@ -217,8 +217,7 @@ async function init() {
     // Setup header buttons
     document.getElementById('volumeToggle').addEventListener('click', () => {
       const enabled = toggleSound();
-      document.getElementById('volumeToggle').textContent = enabled ? '=
-' : '=';
+      document.getElementById('volumeToggle').textContent = enabled ? '🔊' : '🔇';
     });
 
     document.getElementById('inventoryBtn').addEventListener('click', () => {
