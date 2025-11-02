@@ -1,5 +1,4 @@
 # 🐾 동물 월드컵 (Animal World Cup)
-<img width="1477" height="1247" alt="image" src="https://github.com/user-attachments/assets/b59320f6-9df5-4264-b02d-4c1d2f38e5c9" />
 
 귀여운 동물들의 토너먼트 게임 - 16장의 동물 이미지를 1:1 대결로 최종 우승자를 가립니다!
 
@@ -60,22 +59,29 @@ npx serve
    - 각 카테고리는 대표 이미지와 설명으로 구성
    - 믹스 카테고리는 모든 동물을 섞어서 진행
    - "시작하기" 버튼 클릭
+   - <img width="1477" height="1247" alt="image" src="https://github.com/user-attachments/assets/b59320f6-9df5-4264-b02d-4c1d2f38e5c9" />
 
 2. **로딩 화면**
    - 16장의 동물 이미지가 실시간으로 로딩됩니다
    - 진행률 바로 로딩 상태 확인
    - 로딩 실패 시 자동 재시도 (최대 5회)
+   - <img width="926" height="607" alt="image" src="https://github.com/user-attachments/assets/2e1471be-f71d-464d-aa9a-92599602c212" />
+
 
 3. **게임 화면**
    - 두 이미지 중 마음에 드는 것을 클릭하거나 화살표 키로 선택
    - 각 매치마다 10초의 제한시간
    - 상단에 라운드 정보 표시 (16강, 8강, 4강...)
    - 타이머 바로 남은 시간 확인
+   - <img width="1592" height="1231" alt="image" src="https://github.com/user-attachments/assets/a762c17b-f4d3-46cf-8fae-0946dcc51230" />
+
 
 4. **결과 화면**
    - 최종 우승 이미지 대형 카드로 표시
    - 전체 순위를 그리드로 확인 (1위~16위)
    - "다시 하기" 또는 "다른 카테고리" 선택
+   - <img width="1266" height="1190" alt="image" src="https://github.com/user-attachments/assets/4601efe7-f4a5-4c4c-ab7f-c11b32959bda" />
+
 
 ## 📂 프로젝트 구조
 
