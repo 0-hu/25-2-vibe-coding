@@ -1,4 +1,5 @@
 # 🐾 동물 월드컵 (Animal World Cup)
+<img width="1477" height="1247" alt="image" src="https://github.com/user-attachments/assets/b59320f6-9df5-4264-b02d-4c1d2f38e5c9" />
 
 귀여운 동물들의 토너먼트 게임 - 16장의 동물 이미지를 1:1 대결로 최종 우승자를 가립니다!
 
