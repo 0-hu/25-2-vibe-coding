@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동물 월드컵 - 귀여운 동물들의 토너먼트</title>
+
+    <!-- Google Fonts - Press Start 2P (Pixel Font) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/pixel.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/screens.css">
+</head>
+<body>
+    <div id="app" class="app pixel-art">
+        <!-- Screens will be dynamically rendered here -->
+    </div>
+
+    <!-- Logger System (먼저 로드) -->
+    <script src="scripts/logger.js"></script>
+
+    <!-- Main App Script (통합 버전 - ES6 모듈 없음) -->
+    <script src="scripts/main.js"></script>
+
+    <!-- Debug Panel Toggle (F2 키 또는 아이콘 클릭) -->
+    <script>
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'F2') {
+          if (window.logger) {
+            window.logger.toggleDebugPanel();
+          }
+        }
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+:root {
+  /* Retro Color Palette */
+  --color-bg: #2d2d3d;
+  --color-bg-light: #3d3d5d;
+  --color-bg-dark: #1d1d2d;
+
+  --color-primary: #ff6b9d;
+  --color-primary-light: #ffa3c7;
+  --color-primary-dark: #d63d6f;
+
+  --color-secondary: #4ecdc4;
+  --color-secondary-light: #7ee8df;
+  --color-secondary-dark: #2da19a;
+
+  --color-accent: #ffe66d;
+  --color-accent-light: #fff4a3;
+  --color-accent-dark: #d4b03f;
+
+  --color-text: #f7f7f7;
+  --color-text-dim: #b0b0c0;
+  --color-text-dark: #808090;
+
+  --color-success: #95e1d3;
+  --color-warning: #f38181;
+  --color-info: #aa96da;
+
+  /* Shadows & Borders */
+  --shadow-pixel: 4px 4px 0px rgba(0, 0, 0, 0.5);
+  --shadow-pixel-sm: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  --shadow-pixel-lg: 6px 6px 0px rgba(0, 0, 0, 0.5);
+
+  --border-width: 3px;
+  --border-color: #1d1d2d;
+  --border-highlight: #ffffff40;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* Typography */
+  --font-pixel: 'Press Start 2P', 'Courier New', 'Courier', monospace;
+  --font-size-xs: 13px;
+  --font-size-sm: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 23px;
+  --font-size-xl: 31px;
+  --font-size-2xl: 42px;
+
+  /* Animation */
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+}
