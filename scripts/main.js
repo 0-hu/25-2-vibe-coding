@@ -451,6 +451,12 @@ function selectWinner(session, winner) {
   if (newCursor >= session.pairs.length) {
     if (newSurvivors.length === 1) {
       console.log('🎉 Tournament complete!');
+
+      // Play victory sound
+      if (window.SoundSystem) {
+        setTimeout(() => window.SoundSystem.play('victory'), 400);
+      }
+
       return {
         ...session,
         survivors: newSurvivors,
@@ -461,10 +467,17 @@ function selectWinner(session, winner) {
     }
 
     const newPairs = createMatchPairs(newSurvivors);
-    console.log(`📊 Moving to next round: ${getRoundFromCount(newSurvivors.length)}`);
+    const nextRound = getRoundFromCount(newSurvivors.length);
+    console.log(`📊 Moving to next round: ${nextRound}`);
+
+    // Play round complete sound
+    if (window.SoundSystem) {
+      setTimeout(() => window.SoundSystem.play('roundComplete'), 300);
+    }
+
     return {
       ...session,
-      round: getRoundFromCount(newSurvivors.length),
+      round: nextRound,
       pairs: newPairs,
       survivors: [],
       cursor: 0,
@@ -538,7 +551,13 @@ function createElement(tag, className = '', content = '') {
 function createButton(text, className = '', onClick = null) {
   const button = createElement('button', `pixel-button ${className}`, text);
   if (onClick) {
-    button.addEventListener('click', onClick);
+    button.addEventListener('click', (e) => {
+      // Play button click sound
+      if (window.SoundSystem) {
+        window.SoundSystem.play('buttonClick');
+      }
+      onClick(e);
+    });
   }
   return button;
 }
@@ -723,6 +742,10 @@ function renderHomeScreen() {
     card.appendChild(textContainer);
 
     card.addEventListener('click', () => {
+      // Play category select sound
+      if (window.SoundSystem) {
+        window.SoundSystem.play('categorySelect');
+      }
       saveSettings({ lastCategory: category.id });
       renderScreen('home'); // 화면 갱신
     });
@@ -738,6 +761,10 @@ function renderHomeScreen() {
 
   const startButton = createButton('시작하기', 'pixel-button--accent pixel-button--large', () => {
     console.log('🎬 Starting game with category:', currentCategory);
+    // Play game start sound (after button click)
+    if (window.SoundSystem) {
+      setTimeout(() => window.SoundSystem.play('gameStart'), 50);
+    }
     renderScreen('loading');
   });
   actionsDiv.appendChild(startButton);
@@ -836,6 +863,11 @@ async function renderLoadingScreen() {
     }, 500);
   } catch (error) {
     console.error('❌ Failed to load images:', error);
+
+    // Play error sound
+    if (window.SoundSystem) {
+      window.SoundSystem.play('error');
+    }
 
     clearElement(content);
     const errorDiv = createElement('div', 'loading-error');
@@ -945,6 +977,11 @@ function createGameCard(image, side) {
 
 function handleCardSelect(winner, side, card) {
   if (!session) return;
+
+  // Play image select sound
+  if (window.SoundSystem) {
+    window.SoundSystem.play('imageSelect');
+  }
 
   stopTimer();
 
